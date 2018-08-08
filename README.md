@@ -1,15 +1,18 @@
-Example for demoing a bokeh server with Binder
+# Running a bokeh server with Binder
 
-[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/minrk/binder-bokeh-server/master?urlpath=%2Fproxy%2F5006%2Fbokeh-app)
+[![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/binder-examples/bokeh/master?urlpath=/proxy/5006/bokeh-app)
 
-Create a `bokeh-app` directory in the repo with a `main.py`.
-This is the application that will be served.
+This repository demonstrates how to run a Bokeh server from within Binder. To do so, we did the following things:
 
+1. Created a `bokeh-app` directory in the repo with a `main.py` file in it. This is the application that will be served. We've added the
+   [Bokeh weather example](https://github.com/bokeh/bokeh/tree/master/examples/app/weather) as a demo. 
+2. Installed `bokeh` for the viz and `nbserverproxy` which we'll use to direct people to the port on which Bokeh runs. See `environment.yml`.
+3. Added a custom server extension (`bokehserverextension.py`) that will be run to direct people to the Bokeh app (which is run on a port)
+4. Used `postBuild` to enable the `nbserverproxy` extension, then set up and enable our custom server extension for Bokeh. 
+5. Created a Binder link that uses `urlpath` to point users to the port on which the Bokeh server will run:
 
-This repo contains:
-
-- `environment.yml` installing bokeh and nbserverproxy
-- a custom serverextension (`bokehserverextension.py`) that launches bokeh server
-- a `postBuild` script to enable the server extensions and install the local one
-  (this last step would go away if the local extension became a proper package)
-- the [weather example](https://github.com/bokeh/bokeh/tree/master/examples/app/weather) from the bokeh repo in the `bokeh-app` directory.
+   ```
+   https://mybinder.org/v2/gh/binder-examples/bokeh/master?urlpath=/proxy/5006/bokeh-app
+   ```
+   
+When people click on the Binder link, they should be directed to the running Bokeh app.
