@@ -6,9 +6,9 @@ This repository demonstrates how to run a Bokeh server from within Binder. To do
 
 1. Created a `bokeh-app` directory in the repo with a `main.py` file in it. This is the application that will be served. We've added the
    [Bokeh weather example](https://github.com/bokeh/bokeh/tree/master/examples/app/weather) as a demo. 
-2. Installed `bokeh` for the viz and `nbserverproxy` which we'll use to direct people to the port on which Bokeh runs. See `environment.yml`.
+2. Installed `bokeh` for the viz and `jupyter_server_proxy` which we'll use to direct people to the port on which Bokeh runs. See `environment.yml`.
 3. Added a custom server extension (`bokehserverextension.py`) that will be run to direct people to the Bokeh app (which is run on a port)
-4. Used `postBuild` to enable the `nbserverproxy` extension, then set up and enable our custom server extension for Bokeh. 
+4. Used `postBuild` to enable the `jupyter_server_proxy` extension, then set up and enable our custom server extension for Bokeh. 
 5. Created a Binder link that uses `urlpath` to point users to the port on which the Bokeh server will run:
 
    ```
